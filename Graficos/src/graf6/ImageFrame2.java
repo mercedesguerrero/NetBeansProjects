@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package graf5;
+package graf6;
 
 import java.awt.Color;
 import javax.swing.JFrame;
@@ -12,16 +12,16 @@ import javax.swing.JFrame;
  *
  * @author Mechu
  */
-public class ImageFrame extends JFrame{
+public class ImageFrame2 extends JFrame{
     
-    public ImageFrame()
+    public ImageFrame2()
     {
         setVisible(true);
         setTitle("Mis imágenes");
         setSize(800, 600);
         setLocation(200, 100);
         
-        Imagen miFrameImagen= new Imagen();
+        Imagen2 miFrameImagen= new Imagen2();
         add(miFrameImagen);
         
         //miCapa.setBackground(Color.CYAN);

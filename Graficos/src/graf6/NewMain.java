@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package graf5;
+package graf6;
 
 import javax.swing.JFrame;
 
@@ -11,14 +11,14 @@ import javax.swing.JFrame;
  *
  * @author Mechu
  */
-public class Main {
+public class NewMain {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         
-        ImageFrame miFrame= new ImageFrame();
+        ImageFrame2 miFrame= new ImageFrame2();
         miFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
