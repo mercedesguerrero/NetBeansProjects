@@ -11,16 +11,16 @@ import javax.swing.JFrame;
  *
  * @author Mechu
  */
-public class NewMain {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+public class FrameAction extends JFrame{
+    
+    public FrameAction()
+    {
+        setTitle("Eventos multiples");
+        setBounds(120, 50, 900, 500);
         
-        FrameAction myFrame= new FrameAction();
-        myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myFrame.setVisible(true);
+        EventosMultiples layer= new EventosMultiples();
+        add(layer);
+        
     }
     
 }
