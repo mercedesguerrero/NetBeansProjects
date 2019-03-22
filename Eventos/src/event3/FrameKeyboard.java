@@ -5,10 +5,21 @@
  */
 package event3;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Mechu
  */
-public class FrameKeyboard {
+public class FrameKeyboard extends JFrame{
+    
+    public FrameKeyboard()
+    {
+        setVisible(true);
+        setBounds(300, 100, 500, 350);
+        
+        EventKeyboard tecla= new EventKeyboard();
+        addKeyListener(tecla);//LA PONGO A ESCUCHAR
+    }
     
 }

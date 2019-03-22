@@ -25,7 +25,8 @@ public class ChangedStatus implements WindowStateListener{
         if(we.getNewState()== Frame.MAXIMIZED_BOTH)
         {
             System.out.println("La ventana está maximizada");
-        }
+        }//para agregar mas estados conviene hacer un switch
+        
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

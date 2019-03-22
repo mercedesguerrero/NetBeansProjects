@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package event3;
+package event5;
 
 import javax.swing.JFrame;
 
@@ -18,7 +18,7 @@ public class NewMain {
      */
     public static void main(String[] args) {
         
-        FrameKeyboard myFrame= new FrameKeyboard();
+        FrameFoco myFrame= new FrameFoco();
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
