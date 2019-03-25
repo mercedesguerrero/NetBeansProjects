@@ -19,6 +19,7 @@ public class NewMain {
     public static void main(String[] args) {
         
         FrameFoco myFrame= new FrameFoco();
+        
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     

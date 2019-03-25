@@ -5,7 +5,9 @@
  */
 package event5;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  *
@@ -19,6 +21,7 @@ public class FrameFoco extends JFrame{
         setBounds(300, 100, 500, 350);
         
         TextFieldss campos= new TextFieldss();
+        
         add(campos);
     }
     

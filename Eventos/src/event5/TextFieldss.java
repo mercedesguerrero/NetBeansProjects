@@ -38,6 +38,7 @@ public class TextFieldss extends JPanel{
             
         EventFoco elfoco= new EventFoco();
         cuadro1.addFocusListener(elfoco);
+  
     }
     
     private class EventFoco implements FocusListener{//CLASE INTERNA
