@@ -18,31 +18,53 @@ public class NewMain {
      */
     public static void main(String[] args) {
         
-        int arroba= 0;
-        boolean punto= false;
-        
         String mail= JOptionPane.showInputDialog("Introduzca su mail ");
         
-        for(int i=0; i< mail.length(); i++)
+        try
         {
-            if(mail.charAt(i)== '@')
-            {
-                arroba ++;
-            }
-            if(mail.charAt(i)== '.')
-            {
-                punto= true;
-            }
+            evalua_mail(mail);
+        }catch(Exception e)
+        {
+            System.out.println("La direccion no es correcta");
+            e.printStackTrace();//imprime el error
         }
         
-        if(arroba== 1 && punto== true)
-        {
-            System.out.println("Es un mail");
-        }
-        else
-        {
-            System.out.println("No es un mail válido");
-        }
     }
     
+    static void evalua_mail(String mail) throws Minima_longitud_mail
+    {
+        int arroba= 0;
+        boolean punto= false;
+
+        if(mail.length()<=3)
+        {
+            //ArrayIndexOutOfBoundsException mi_excepcion= new ArrayIndexOutOfBoundsException();
+            throw new Minima_longitud_mail("El mail es muy corto");
+        }
+
+        else
+        {
+                for(int i=0; i< mail.length(); i++)
+                {
+                    if(mail.charAt(i)== '@')
+                    {
+                        arroba ++;
+                    }
+                    if(mail.charAt(i)== '.')
+                    {
+                        punto= true;
+                    }
+                }
+
+                if(arroba== 1 && punto== true)
+                {
+                    System.out.println("Es un mail");
+                }
+                else
+                {
+                    System.out.println("No es un mail válido");
+                }
+            }
+        } 
 }
+

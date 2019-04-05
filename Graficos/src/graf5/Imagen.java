@@ -20,6 +20,11 @@ public class Imagen extends JPanel{
     
     private Image _imagen;
     
+    public Imagen()
+    {
+        
+    }
+    
     @Override
     public void paintComponent(Graphics g)
     {

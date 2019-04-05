@@ -9,10 +9,14 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.ActionMap;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -40,6 +44,18 @@ public class EventosMultiples extends JPanel{//CLASE OYENTE
         add(botonAzul);
         add(botonRojo);
         */
+        
+        InputMap mapaEntrada= getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);//el objeto del foco se encuentra dentro de la capa
+        //KeyStroke teclaAmarilla= KeyStroke.getKeyStroke("ctrl A");
+        mapaEntrada.put(KeyStroke.getKeyStroke("ctrl A"), "fondo_amarillo");
+        ActionMap mapaAccion= getActionMap();
+        mapaAccion.put("fondo_amarillo", accionAmarillo);
+        
+        mapaEntrada.put(KeyStroke.getKeyStroke("ctrl B"), "fondo_azul");
+        mapaAccion.put("fondo_azul", accionAzul);
+        
+        mapaEntrada.put(KeyStroke.getKeyStroke("ctrl R"), "fondo_rojo");
+        mapaAccion.put("fondo_rojo", accionRojo);
     }
     
     private class ColorAction extends AbstractAction{// CLASE INTERNA

@@ -30,7 +30,7 @@ public class Imagen2 extends JPanel{
         super.paintComponent(g);
         
         try{
-        this._imagen= ImageIO.read(new File("BELOVED.jpg"));
+        this._imagen= ImageIO.read(new File("BELOVED.jpg"));//checked exception
         }
         catch(IOException e)
         {
@@ -41,21 +41,30 @@ public class Imagen2 extends JPanel{
         int anchoImagen= this.getImagen().getWidth(this);
         int alturaImagen= this.getImagen().getHeight(this);
         
-        g.drawImage(this.getImagen(), 0, 0, null); //OBSERVER= informar el progreso de conversion de la imagen
-        
-        for(int i=0; i<800 ; i++)
+        if(this.getImagen()==null)//unchecked exception
         {
-            for(int j=0; j<600 ; j++)
+            g.drawString("No se puede cargar la imagen", 10, 10);
+        }
+        else
+        {
+            g.drawImage(this.getImagen(), 0, 0, null); //OBSERVER= informar el progreso de conversion de la imagen
+        
+            for(int i=0; i<800 ; i++)
             {
-                //g.copyArea(0, 0, 225, 225, 225*i, 225*j);//IMAGEN REPETIDA EN MOSAICO 225= TAMAÑO DE LA IMAGEN EN PIXELES(ANCHO Y ALTO)
-                if(i+j>0)//para que no la vuelva a copiar en la primera posición
+                for(int j=0; j<600 ; j++)
                 {
-                    g.copyArea(0, 0, anchoImagen, alturaImagen, anchoImagen*i, alturaImagen*j);
+                    //g.copyArea(0, 0, 225, 225, 225*i, 225*j);//IMAGEN REPETIDA EN MOSAICO 225= TAMAÑO DE LA IMAGEN EN PIXELES(ANCHO Y ALTO)
+                    if(i+j>0)//para que no la vuelva a copiar en la primera posición
+                    {
+                        g.copyArea(0, 0, anchoImagen, alturaImagen, anchoImagen*i, alturaImagen*j);
+                    }
                 }
             }
+
+            //g.copyArea(0, 0, 225, 225, 200, 50);
         }
         
-        //g.copyArea(0, 0, 225, 225, 200, 50);
+        
     } 
     
 }

@@ -27,12 +27,23 @@ public class Main {
         String nombre_usuario= entrada.nextLine();
         
         System.out.println("Edad: ");
-        int edad= entrada.nextInt();
         
-        System.out.println("Hola " + nombre_usuario + " el próximo año vas a tener " + (edad+1) + " años\n");
+        try{
+            int edad= entrada.nextInt();
+            //entrada.close();
+            
+            System.out.println("Hola " + nombre_usuario + " el próximo año vas a tener " + (edad+1) + " años\n");
         
-        System.out.println("Tu nombre tiene " + nombre_usuario.length() + " letras.");
+            System.out.println("Tu nombre tiene " + nombre_usuario.length() + " letras.");
         
+        }catch(Exception e)
+        {
+            System.out.println("Error");
+            e.printStackTrace();
+            
+        }finally{//se ejecuta SIEMPRE SUCEDA O NO LA EXCEPCION
+            entrada.close();
+        }
         
     }
     
