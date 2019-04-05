@@ -5,7 +5,9 @@
  */
 package DisposicionLibre;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  *
@@ -21,6 +23,9 @@ public class Frame extends JFrame{
         setTitle("Disposicion libre");
         
         Layer_Libre miLayer= new Layer_Libre();
+        
+        //setContentPane(new JLabel(new ImageIcon("space.jpg")));
+        
         add(miLayer);
         
         setVisible(true);

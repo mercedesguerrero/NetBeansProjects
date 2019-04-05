@@ -5,7 +5,9 @@
  */
 package DisposicionLibre;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -17,7 +19,9 @@ public class Layer_Libre extends JPanel{
     public Layer_Libre()
     {
         //setLayout(null);
+        //add(new JLabel(new ImageIcon("space.jpg")));
         setLayout(new Disposicion_Elementos());
+        
         
         JButton botonCerrar= new JButton("Cerrar");
         //botonCerrar.setBounds(400, 500, 150, 50);//x,y,tamaño
