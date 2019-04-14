@@ -31,25 +31,9 @@ public class NewMain {
         Empleado jefe_RRHH= new Jefe("Tomas", 85000, 2001, 11, 14, 5500);
         misEmpleados[4]= jefe_RRHH;
         
-        try{
-            
-            ObjectOutputStream escribiendo_fichero= new ObjectOutputStream(new FileOutputStream("empleado.xml"));
-            escribiendo_fichero.writeObject(misEmpleados);
-            escribiendo_fichero.close();
-            
-            ObjectInputStream recuperar_fichero= new ObjectInputStream(new FileInputStream("empleado.xml"));
-            Empleado[] personalRecuperado= (Empleado[]) recuperar_fichero.readObject();
-            recuperar_fichero.close();
-            
-            for (Empleado empleado : personalRecuperado) 
-            {
-                System.out.println(empleado.toString());
-            }
-            
-        }catch(Exception e){
-            
-            System.out.println("No se pudo escribir en el archivo");
-        }
+        Serializando miSerial= new Serializando(misEmpleados);
+        
+        miSerial.Serializar();
     }
     
 }

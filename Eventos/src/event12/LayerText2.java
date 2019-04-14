@@ -5,6 +5,8 @@
  */
 package event12;
 
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -22,10 +24,21 @@ public class LayerText2 extends JPanel{
     
     public LayerText2()
     {
+        //setLayout(null);
+        
         miArea= new JTextArea(8, 20);
         //JScrollPane layerBarras= new JScrollPane(miArea);
-        
         miArea.setLineWrap(true);//No tiene saltos de linea
+        miArea.setColumns(1);
+        miArea.setRows(1);
+        miArea.setFont(new Font("Aharoni", Font.BOLD, 76));
+        miArea.setTabSize(1);
+        miArea.setPreferredSize(new Dimension (50,60));
+        miArea.setRequestFocusEnabled(true);
+        //miArea.setEditable(false);//no te deja escribir
+       
+        //miArea.setMaximumSize(getMaximumSize());
+        
         
         add(miArea);
         //add(layerBarras);// BARRA DE DESPLAZAMIENTO
