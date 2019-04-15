@@ -18,6 +18,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -39,11 +40,13 @@ public class Layer1 extends JPanel{
     JTextArea _areaParaIngresarLetra;
     private String _palabra_a_adivinar; 
     private int _cuentaErrores;
+    private final ArrayList<Character> _letrasIngresadasList;
     
     public Layer1()
     {
         this._palabra_a_adivinar= "MERCEDES";
         this._cuentaErrores= 0;
+        this._letrasIngresadasList = new ArrayList<>();
         Palabra_a_Completar();
     }
 
@@ -77,6 +80,11 @@ public class Layer1 extends JPanel{
         System.out.println("Letras a adivinar: " + this._letras_a_adivinar);
     }
     
+    private void AgregarLetraIngresada(char letraIngresada)
+    {
+        this._letrasIngresadasList.add(letraIngresada);
+    }
+    
     private boolean MostrarLetra(char letraIngresada)
     {
         //char[] letrasConvert= _letras_a_adivinar.toCharArray();
@@ -91,12 +99,10 @@ public class Layer1 extends JPanel{
             {
                 retorno= true;
                 
+                
                 if (_letras_a_adivinar.charAt(i) != '_')
                 {
-                    StringBuilder aux = new StringBuilder();
-                    aux.append(this.getLetras_a_adivinar().charAt(i));
-                    this.setLetras_a_adivinar(String.valueOf(_letras_a_adivinar.charAt(i)).replace(_letras_a_adivinar.charAt(i), aux.toString().toCharArray()[i]));
-                    System.out.println("Palabra medio adivinada1: " + aux);
+                    System.out.println("Continuar");
                 }
                 //letrasConvert[i]= letraIngresada;
                 else
@@ -107,9 +113,14 @@ public class Layer1 extends JPanel{
                     aux.append(this.getLetras_a_adivinar().charAt(i));
                     System.out.println("Palabra medio adivinada2: " + aux.toString());
                     */
-                    String aux= String.valueOf(_letras_a_adivinar.charAt(i)).replace(_letras_a_adivinar.charAt(i), letraIngresada);
-                    this.setLetras_a_adivinar(String.valueOf(_letras_a_adivinar.charAt(i)).replace(_letras_a_adivinar.charAt(i), letraIngresada));
-                    System.out.println("Para ver como queda: " + this.getLetras_a_adivinar());
+                    StringBuilder aux = new StringBuilder(this.getLetras_a_adivinar());
+                    aux.setCharAt(i, letraIngresada);
+                    
+                    System.out.println("Palabra medio adivinada1: " + aux.toString());
+                    
+                    setLetras_a_adivinar(aux.toString());
+               
+                    System.out.println("Letras a adivinar seteadas: " + getLetras_a_adivinar());
 
                 }
             }
@@ -173,7 +184,12 @@ public class Layer1 extends JPanel{
                     ke.consume();//no toma en cuanta las letras que se ingresen posteriormente
   
                     String cadena= String.valueOf(letra_ingresada).toUpperCase();
+                    letra_ingresada= cadena.charAt(0);
+                    
                     _areaParaIngresarLetra.setText(cadena);
+                    
+                    AgregarLetraIngresada(letra_ingresada);
+                    
                     if(MostrarLetra(letra_ingresada))
                     {
                         JOptionPane.showMessageDialog(null, "Correcto!!!");
