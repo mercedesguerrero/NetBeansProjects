@@ -40,12 +40,14 @@ public class Layer1 extends JPanel{
     JTextArea _areaParaIngresarLetra;
     private String _palabra_a_adivinar; 
     private int _cuentaErrores;
+    private int _cantFallosPermitidos;
     private final ArrayList<Character> _letrasIngresadasList;
     
     public Layer1()
     {
         this._palabra_a_adivinar= "MERCEDES";
         this._cuentaErrores= 0;
+        this._cantFallosPermitidos= 6;
         this._letrasIngresadasList = new ArrayList<>();
         Palabra_a_Completar();
     }
@@ -85,6 +87,37 @@ public class Layer1 extends JPanel{
         this._letrasIngresadasList.add(letraIngresada);
     }
     
+    public boolean noQuedanIntentos() 
+    {
+        boolean retorno;
+        if (_cuentaErrores > _cantFallosPermitidos) 
+        {
+            retorno= true;
+        }
+        else 
+        {
+            retorno= false;
+        }
+        
+        return retorno;
+    }
+    
+    public boolean QuedanIntentos() 
+    {
+        boolean retorno;
+        if (_cuentaErrores <= _cantFallosPermitidos) 
+        {
+            retorno= true;
+        }
+        else 
+        {
+            retorno= false;
+        }
+        
+        return retorno;
+    }
+    
+    
     private boolean MostrarLetra(char letraIngresada)
     {
         //char[] letrasConvert= _letras_a_adivinar.toCharArray();
@@ -96,23 +129,16 @@ public class Layer1 extends JPanel{
             System.out.println("Letra ingresada: " + letraIngresada);                      
                         
             if (_palabra_a_adivinar.charAt(i) == letraIngresada)
-            {
-                retorno= true;
-                
-                
+            {  
                 if (_letras_a_adivinar.charAt(i) != '_')
                 {
-                    System.out.println("Continuar");
+                    JOptionPane.showMessageDialog(null, "Ya ingresaste la letra " + letraIngresada);
                 }
                 //letrasConvert[i]= letraIngresada;
                 else
-                {/*
-                    StringBuilder aux = new StringBuilder();
-                    aux.append(this.getLetras_a_adivinar().charAt(i));
-                    this.setLetras_a_adivinar(String.valueOf(_letras_a_adivinar.charAt(i)).replace(_letras_a_adivinar.charAt(i), aux.toString().toCharArray()[i]));
-                    aux.append(this.getLetras_a_adivinar().charAt(i));
-                    System.out.println("Palabra medio adivinada2: " + aux.toString());
-                    */
+                {
+                    retorno= true;
+                    
                     StringBuilder aux = new StringBuilder(this.getLetras_a_adivinar());
                     aux.setCharAt(i, letraIngresada);
                     
@@ -124,15 +150,12 @@ public class Layer1 extends JPanel{
 
                 }
             }
-            else
-            {
-                this.setCuentaErrores(this._cuentaErrores +1);
-            }
         }
         
         return retorno;
     }
     
+
     @Override
     public void paintComponent(Graphics g)
     {
@@ -151,16 +174,18 @@ public class Layer1 extends JPanel{
         
         g.drawImage(_fondo, 0, 0, null);
         
-        Graphics2D g2= (Graphics2D) g;
+        Graphics2D titulo= (Graphics2D) g;
         
         Font miFuente= new Font("Happy Camper", Font.BOLD, 76);
-        g2.setFont(miFuente);
-        g2.setColor(Color.WHITE);
-        g2.drawString(_palabra_a_adivinar, 450, 100);
+        titulo.setFont(miFuente);
+        titulo.setColor(Color.WHITE);
+        titulo.drawString(_palabra_a_adivinar, 450, 100);
         
-        g2.setFont(new Font("Calibri", Font.BOLD, 62));
-        g2.setColor(new Color(65, 228, 195));
-        g2.drawString(this.getLetras_a_adivinar(), 250, 250);
+        Graphics2D palabra= (Graphics2D) g;
+        
+        palabra.setFont(new Font("Calibri", Font.BOLD, 62));
+        palabra.setColor(new Color(65, 228, 195));
+        palabra.drawString(this.getLetras_a_adivinar(), 250, 250);
 
         _areaParaIngresarLetra= new JTextArea(8, 20);
         _areaParaIngresarLetra.setLineWrap(true);//No tiene saltos de linea
@@ -192,9 +217,18 @@ public class Layer1 extends JPanel{
                     
                     if(MostrarLetra(letra_ingresada))
                     {
+                        repaint();//llama a paint hace update()
                         JOptionPane.showMessageDialog(null, "Correcto!!!");
                         System.out.println("Letra ingresada: " + _areaParaIngresarLetra.getText());
-                        g2.drawString(getLetras_a_adivinar(), 250, 250);
+                        //.drawString(getLetras_a_adivinar(), 250, 250);
+                        _areaParaIngresarLetra.setText("");
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Incorrecto!!!");
+                        System.out.println("Letra ingresada: " + _areaParaIngresarLetra.getText());
+                        _cuentaErrores += 1;
+                        System.out.println("Cantidad de errores: " + _cuentaErrores);
                         _areaParaIngresarLetra.setText("");
                     }
                     
@@ -240,5 +274,8 @@ public class Layer1 extends JPanel{
         });
    
         add(boton_salir);
+        
     }
+    
+ 
 }
